@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+
 import javax.swing.JPanel;
 
 
@@ -23,9 +24,9 @@ public class GamePanel extends JPanel implements Runnable{
     int y = 100;
     int speed = 4;
     public GamePanel () {
-        this.setPreferredSize(new Dimension(width, height));
-        this.setBackground(Color.GRAY);
         this.setDoubleBuffered(true);
+        this.setBackground(Color.GRAY);
+        this.setPreferredSize(new Dimension(width, height));
         this.addKeyListener(con);
         this.setFocusable(true);
     }
@@ -37,8 +38,30 @@ public class GamePanel extends JPanel implements Runnable{
 
     public void run () {
         while (gameThread != null) {
-            update();
-            repaint();
+            double interval = 1000000000.0/60;
+        double delta = 0;
+        int timer = 0;
+        int drawCount = 0;
+        long lastTime = System.nanoTime();
+        long currentTime;
+        while (gameThread != null) { 
+            currentTime = System.nanoTime();
+            delta += (currentTime - lastTime) / interval;
+            timer += (currentTime - lastTime);
+            lastTime = currentTime;
+            if (delta >= 1) {
+                update();
+                repaint();
+                delta--;
+                drawCount++;
+            }
+            if (timer >= 1000000000) {
+                System.out.println("FPS: " + drawCount);
+                drawCount = 0;
+                timer = 0;
+            }
+        }
+        
         }
     }
 

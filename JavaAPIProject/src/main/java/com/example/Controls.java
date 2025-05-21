@@ -5,19 +5,20 @@ import java.awt.event.KeyListener;
 public class Controls implements KeyListener {
     public boolean W, S, A, D;
 
-    public void keyTyped(KeyEvent e) {
-
-    }
+    public void keyTyped(KeyEvent e) {}
 
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
             W = true;
-        } else if (code == KeyEvent.VK_A) {
+        }
+        if (code == KeyEvent.VK_A) {
             A = true;
-        } else if (code == KeyEvent.VK_S) {
+        }
+        if (code == KeyEvent.VK_S) {
             S = true;
-        } else if (code == KeyEvent.VK_D) {
+        }
+        if (code == KeyEvent.VK_D) {
             D = true;
         }
     }
