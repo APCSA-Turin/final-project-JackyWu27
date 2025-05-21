@@ -2,11 +2,8 @@ package com.example;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class Controls implements KeyListener{
-    public boolean W;
-    public boolean A;
-    public boolean S;
-    public boolean D;
+public class Controls implements KeyListener {
+    public boolean W, S, A, D;
 
     public void keyTyped(KeyEvent e) {
 
@@ -16,14 +13,11 @@ public class Controls implements KeyListener{
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
             W = true;
-        }
-        if (code == KeyEvent.VK_A) {
+        } else if (code == KeyEvent.VK_A) {
             A = true;
-        }
-        if (code == KeyEvent.VK_S) {
+        } else if (code == KeyEvent.VK_S) {
             S = true;
-        }
-        if (code == KeyEvent.VK_D) {
+        } else if (code == KeyEvent.VK_D) {
             D = true;
         }
     }

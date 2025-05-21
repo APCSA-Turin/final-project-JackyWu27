@@ -6,7 +6,7 @@ public class MainWindow{
     public static void main(String[] args) {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(true);
+        window.setResizable(false);
         window.setTitle("Crappy Roguelike");
         window.setSize(420,420);
 
@@ -16,5 +16,6 @@ public class MainWindow{
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+        GPanel.startThread();
     }
 }

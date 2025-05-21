@@ -4,11 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
 
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable{
     final int tileSize = 16;
     final int scale = 3;
     final int displayTile = scale * tileSize;
@@ -24,42 +23,33 @@ public class GamePanel extends JPanel {
     int y = 100;
     int speed = 4;
     public GamePanel () {
-        this.setDoubleBuffered(true);
-        this.setBackground(Color.GRAY);
         this.setPreferredSize(new Dimension(width, height));
+        this.setBackground(Color.GRAY);
+        this.setDoubleBuffered(true);
         this.addKeyListener(con);
         this.setFocusable(true);
     }
 
     public void startThread () {
-        gameThread = new Thread(this.getName());
+        gameThread = new Thread(this);
         gameThread.start();
     }
 
     public void run () {
-        double interval = 1/60;
-        double nextTime = System.nanoTime() + interval;
-        while (gameThread != null) { 
+        while (gameThread != null) {
             update();
             repaint();
-
-            
-            System.out.println("Game running...");
         }
-        
     }
 
     public void update () {
         if (con.W) {
             y -= speed;
-        }
-        if (con.S) {
+        } else if (con.S) {
             y += speed;
-        }
-        if (con.A) {
+        } else if (con.A) {
             x -= speed;
-        }
-        if (con.D) {
+        } else if (con.D) {
             x += speed;
         }
     }
