@@ -1,5 +1,6 @@
 package com.example;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
@@ -55,6 +56,8 @@ public class Player extends Entity{
     }
 
     public void draw (Graphics2D g2) {
+        g2.setColor(Color.WHITE);
+        g2.fillRect(x, y, gp.displayTile, gp.displayTile);
         BufferedImage image = null;
         switch (direction) {
             case "up":
