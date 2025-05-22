@@ -3,11 +3,13 @@ package com.example;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Player extends Entity{
     GamePanel gp;
     Controls con;
+    BufferedImage a;
 
     public Player (GamePanel g, Controls c) {
         gp = g;
@@ -16,17 +18,16 @@ public class Player extends Entity{
         direction = "down";
         playerImage();
     }
-
     public void playerImage () {
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Back1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Back2.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Front1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Front2.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Left1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Left2.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Right1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/PlayerArt/Right2.png"));
+            up1 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Back1.png"));
+            up2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Back2.png"));
+            down1 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Front1.png"));
+            down2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Front2.png"));
+            left1 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Left1.png"));
+            left2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Left2.png"));
+            right1 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Right1.png"));
+            right2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Right2.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,38 +40,70 @@ public class Player extends Entity{
     }
 
     public void update () {
-        if (con.W) {
-            direction = "up";
-            y -= speed;
-        } else if (con.S) {
-            direction = "down";
-            y += speed;
-        } else if (con.A) {
-            direction = "left";
-            x -= speed;
-        } else if (con.D) {
-            direction = "right";
-            x += speed;
+        if (con.W || con.S || con.A || con.D) {
+            if (con.W) {
+                direction = "up";
+                y -= speed;
+            } else if (con.S) {
+                direction = "down";
+                y += speed;
+            } else if (con.A) {
+                direction = "left";
+                x -= speed;
+            } else if (con.D) {
+                direction = "right";
+                x += speed;
+            }
+            count++;
+            if (count > 10) {
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 1;
+                }
+                count = 0;
+            }
+        } else {
+            if (direction.equals("left") || direction.equals("right")) {
+                spriteNum = 1;
+            }
         }
     }
 
     public void draw (Graphics2D g2) {
-        g2.setColor(Color.WHITE);
-        g2.fillRect(x, y, gp.displayTile, gp.displayTile);
         BufferedImage image = null;
         switch (direction) {
             case "up":
-                image = up1;
+                if (spriteNum == 1) {
+                    image = up1; 
+                }
+                if (spriteNum == 2) {
+                    image = up2; 
+                }
                 break;
-        
             case "down":
-                image = down1;
+                if (spriteNum == 1) {
+                    image = down1; 
+                }
+                if (spriteNum == 2) {
+                    image = down2; 
+                }
                 break;
             case "left":
-                image = left1;
+                if (spriteNum == 1) {
+                    image = left1; 
+                }
+                if (spriteNum == 2) {
+                    image = left2; 
+                }
                 break;
             case "right":
-                image = right1;
+                if (spriteNum == 1) {
+                    image = right1; 
+                }
+                if (spriteNum == 2) {
+                    image = right2; 
+                }
                 break;
         }
         g2.drawImage(image, x, y, gp.displayTile, gp.displayTile, null);

@@ -1,6 +1,6 @@
 package com.example;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class MainWindow{
     public static void main(String[] args) {
