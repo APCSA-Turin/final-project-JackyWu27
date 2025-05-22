@@ -1,0 +1,49 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.example.App",
+            "projectName": "JavaAPIProject"
+        },
+        {
+            "type": "java",
+            "name": "FileLoader",
+            "request": "launch",
+            "mainClass": "com.example.FileLoader",
+            "projectName": "JavaAPIProject"
+        },
+        {
+            "type": "java",
+            "name": "FileSaver",
+            "request": "launch",
+            "mainClass": "com.example.FileSaver",
+            "projectName": "JavaAPIProject"
+        },
+        {
+            "type": "java",
+            "name": "MainWindow",
+            "request": "launch",
+            "mainClass": "com.example.MainWindow",
+            "projectName": "JavaAPIProject"
+        },
+        {
+            "type": "java",
+            "name": "ManualJSONParse",
+            "request": "launch",
+            "mainClass": "com.example.ManualJSONParse",
+            "projectName": "JavaAPIProject"
+        }
+    ]
+}

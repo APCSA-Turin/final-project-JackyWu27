@@ -66,13 +66,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update () {
-        if (con.W) {
+        if (false) {
             y -= speed;
-        } else if (con.S) {
+        } else if (false) {
             y += speed;
-        } else if (con.A) {
+        } else if (false) {
             x -= speed;
-        } else if (con.D) {
+        } else if (true) {
             x += speed;
         }
     }
