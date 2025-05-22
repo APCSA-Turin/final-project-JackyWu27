@@ -7,7 +7,7 @@ public class Controls implements KeyListener {
 
     public void keyTyped(KeyEvent e) {}
 
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { //detect if pressed
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
             W = true;
@@ -23,7 +23,7 @@ public class Controls implements KeyListener {
         }
     }
 
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(KeyEvent e) { //detect if released
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
             W = false;
