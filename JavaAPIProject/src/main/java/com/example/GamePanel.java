@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-
 import javax.swing.JPanel;
 
 
@@ -17,17 +16,18 @@ public class GamePanel extends JPanel implements Runnable{
     final int height = tileRow * displayTile;
     final int width = tileCol * displayTile;
 
+    Controls control = new Controls();
     Thread gameThread;
-    Controls con;
 
-    int x = 100;
-    int y = 100;
-    int speed = 4;
+    int playerX = 100;
+    int playerY = 100;
+    int playerSpeed = 4;
+
     public GamePanel () {
         this.setDoubleBuffered(true);
-        this.setBackground(Color.GRAY);
+        this.setBackground(Color.BLACK);
         this.setPreferredSize(new Dimension(width, height));
-        this.addKeyListener(con);
+        this.addKeyListener(control);
         this.setFocusable(true);
     }
 
@@ -66,14 +66,14 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update () {
-        if (false) {
-            y -= speed;
-        } else if (false) {
-            y += speed;
-        } else if (false) {
-            x -= speed;
-        } else if (true) {
-            x += speed;
+        if (control.W) {
+            playerY -= playerSpeed;
+        } else if (control.S) {
+            playerY += playerSpeed;
+        } else if (control.A) {
+            playerX -= playerSpeed;
+        } else if (control.D) {
+            playerX += playerSpeed;
         }
     }
 
@@ -81,7 +81,7 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         g2.setColor(Color.white);
-        g2.fillRect(x,y,displayTile,displayTile);
+        g2.fillRect(playerX,playerY,displayTile,displayTile);
         g2.dispose();
     }
 }
