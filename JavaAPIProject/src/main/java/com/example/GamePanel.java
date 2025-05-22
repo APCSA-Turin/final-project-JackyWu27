@@ -18,6 +18,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     Controls control = new Controls();
     Thread gameThread;
+    Player player = new Player(this, control);
 
     int playerX = 100;
     int playerY = 100;
@@ -66,22 +67,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update () {
-        if (control.W) {
-            playerY -= playerSpeed;
-        } else if (control.S) {
-            playerY += playerSpeed;
-        } else if (control.A) {
-            playerX -= playerSpeed;
-        } else if (control.D) {
-            playerX += playerSpeed;
-        }
+        player.update();
     }
 
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.white);
-        g2.fillRect(playerX,playerY,displayTile,displayTile);
+        player.draw(g2);
         g2.dispose();
     }
 }
