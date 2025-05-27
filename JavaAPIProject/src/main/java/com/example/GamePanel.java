@@ -15,7 +15,9 @@ public class GamePanel extends JPanel implements Runnable{
     final int tileRow = 12;
     final int height = tileRow * displayTile;
     final int width = tileCol * displayTile;
+    int check = 0;
 
+    TileManager TM = new TileManager(this);
     Controls control = new Controls();
     Thread gameThread;
     Player player = new Player(this, control);
@@ -26,7 +28,6 @@ public class GamePanel extends JPanel implements Runnable{
 
     public GamePanel () {
         this.setDoubleBuffered(true);
-        this.setBackground(Color.BLACK);
         this.setPreferredSize(new Dimension(width, height));
         this.addKeyListener(control);
         this.setFocusable(true);
@@ -73,6 +74,7 @@ public class GamePanel extends JPanel implements Runnable{
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+        TM.draw(g2);
         player.draw(g2);
         g2.dispose();
     }
