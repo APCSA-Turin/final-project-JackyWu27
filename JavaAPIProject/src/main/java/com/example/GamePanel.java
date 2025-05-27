@@ -14,7 +14,6 @@ public class GamePanel extends JPanel implements Runnable{
     final int tileRow = 16;
     final int height = tileRow * displayTile;
     final int width = tileCol * displayTile;
-    int check = 0;
 
     final int wRow = 40;
     final int wCol = 40;
@@ -24,6 +23,7 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager TM = new TileManager(this);
     Controls control = new Controls();
     Thread gameThread;
+    public CollisionCheck check = new CollisionCheck(this);
     public Player player = new Player(this, control);
 
     int playerX = 100;

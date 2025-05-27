@@ -28,6 +28,7 @@ public class TileManager {
             tiles[1].image = ImageIO.read(new File("JavaAPIProject\\res\\TilesArt\\EdibleTile.png"));
             tiles[2] = new Tile();
             tiles[2].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\wall.png"));
+            tiles[2].tileCollision = true;
         } catch (Exception e) {
             e.printStackTrace();
         }

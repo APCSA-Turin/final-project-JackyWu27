@@ -1,5 +1,6 @@
 package com.example;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 public class Entity {
@@ -10,4 +11,7 @@ public class Entity {
 
     public int count = 0;
     public int spriteNum = 1;
+
+    public Rectangle hitbox;
+    public boolean collision = false;
 }

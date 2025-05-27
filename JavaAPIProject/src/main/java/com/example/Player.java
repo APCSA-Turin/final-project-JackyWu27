@@ -1,6 +1,7 @@
 package com.example;
 
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -17,7 +18,14 @@ public class Player extends Entity {
         gp = g;
         con = c;
         screenX = gp.width / 2 - (gp.displayTile / 2);
-        screenY = gp.height / 2 - (gp.displayTile / 2);;
+        screenY = gp.height / 2 - (gp.displayTile / 2);
+
+        hitbox = new Rectangle();
+        hitbox.x = 8;
+        hitbox.y = 16;
+        hitbox.width = 32;
+        hitbox.height = 32;
+
         setDefault();
         direction = "down";
         playerImage();
@@ -58,6 +66,30 @@ public class Player extends Entity {
                 direction = "right";
                 mapX += speed;
             }
+
+            collision = false;
+            gp.check.check(this);
+
+            if (!collision) {
+                switch (direction) {
+                    case "up":
+                        mapY -= speed * 2;
+                        break;
+                
+                    case "down":
+                        mapY += speed + 1;
+                        break;
+
+                    case "left":
+                        mapX -= speed + 1;
+                        break;
+                
+                    case "right":
+                        mapX += speed + 1;
+                        break;
+                }
+            }
+
             count++;
             if (count > 10) {
                 if (spriteNum == 1) {
