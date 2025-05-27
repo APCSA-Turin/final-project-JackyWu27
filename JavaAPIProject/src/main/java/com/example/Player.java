@@ -1,19 +1,23 @@
 package com.example;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 
-public class Player extends Entity{
+public class Player extends Entity {
     GamePanel gp;
     Controls con;
     BufferedImage a;
 
+    public final int screenX;
+    public final int screenY;
+
     public Player (GamePanel g, Controls c) {
         gp = g;
         con = c;
+        screenX = gp.width / 2 - (gp.displayTile / 2);
+        screenY = gp.height / 2 - (gp.displayTile / 2);;
         setDefault();
         direction = "down";
         playerImage();
@@ -34,8 +38,8 @@ public class Player extends Entity{
 
     }
     public void setDefault () {
-        x = 100;
-        y = 100;
+        mapX = 20 * gp.displayTile;
+        mapY = 20 * gp.displayTile;
         speed = 4;
     }
 
@@ -43,16 +47,16 @@ public class Player extends Entity{
         if (con.W || con.S || con.A || con.D) {
             if (con.W) {
                 direction = "up";
-                y -= speed;
+                mapY -= speed;
             } else if (con.S) {
                 direction = "down";
-                y += speed;
+                mapY += speed;
             } else if (con.A) {
                 direction = "left";
-                x -= speed;
+                mapX -= speed;
             } else if (con.D) {
                 direction = "right";
-                x += speed;
+                mapX += speed;
             }
             count++;
             if (count > 10) {
@@ -106,6 +110,6 @@ public class Player extends Entity{
                 }
                 break;
         }
-        g2.drawImage(image, x, y, gp.displayTile, gp.displayTile, null);
+        g2.drawImage(image, screenX, screenY, gp.displayTile, gp.displayTile, null);
     }
 }

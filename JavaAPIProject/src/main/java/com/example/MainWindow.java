@@ -8,7 +8,7 @@ public class MainWindow{
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
         window.setTitle("Crappy Roguelike");
-        window.setSize(420,420);
+        window.setSize(1280,720);
 
         GamePanel GPanel = new GamePanel();
         window.add(GPanel);
