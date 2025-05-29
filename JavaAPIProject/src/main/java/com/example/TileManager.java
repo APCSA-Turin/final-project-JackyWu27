@@ -14,7 +14,7 @@ public class TileManager {
 
     public TileManager (GamePanel g) {
         gp = g;
-        tiles = new Tile[18];
+        tiles = new Tile[23];
         map = new int[gp.wCol][gp.wRow];
         getTileImage();
         load("map1");
@@ -50,29 +50,44 @@ public class TileManager {
             tiles[9].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallRight.png"));
             tiles[9].tileCollision = true;
             tiles[10] = new Tile();
-            tiles[10].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopLeft.png"));
+            tiles[10].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopLeft1.png"));
             tiles[10].tileCollision = true;
             tiles[11] = new Tile();
-            tiles[11].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopRight.png"));
+            tiles[11].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopRight1.png"));
             tiles[11].tileCollision = true;
             tiles[12] = new Tile();
-            tiles[12].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomLeft.png"));
+            tiles[12].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomLeft1.png"));
             tiles[12].tileCollision = true;
             tiles[13] = new Tile();
-            tiles[13].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomRight.png"));
+            tiles[13].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomRight1.png"));
             tiles[13].tileCollision = true;
             tiles[14] = new Tile();
-            tiles[14].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenUp.png"));
+            tiles[14].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopLeft2.png"));
             tiles[14].tileCollision = true;
             tiles[15] = new Tile();
-            tiles[15].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenDown.png"));
+            tiles[15].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallTopRight2.png"));
             tiles[15].tileCollision = true;
             tiles[16] = new Tile();
-            tiles[16].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenLeft.png"));
+            tiles[16].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomLeft2.png"));
             tiles[16].tileCollision = true;
             tiles[17] = new Tile();
-            tiles[17].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenRight.png"));
+            tiles[17].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallBottomRight2.png"));
             tiles[17].tileCollision = true;
+            tiles[18] = new Tile();
+            tiles[18].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenUp.png"));
+            tiles[18].tileCollision = true;
+            tiles[19] = new Tile();
+            tiles[19].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenDown.png"));
+            tiles[19].tileCollision = true;
+            tiles[20] = new Tile();
+            tiles[20].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenLeft.png"));
+            tiles[20].tileCollision = true;
+            tiles[21] = new Tile();
+            tiles[21].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallOpenRight.png"));
+            tiles[21].tileCollision = true;
+            tiles[22] = new Tile();
+            tiles[22].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\Barrier.png"));
+            tiles[22].tileCollision = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -90,7 +105,7 @@ public class TileManager {
                         map[c][d] = 1;
                     }
                 }
-                if ((d * gp.displayTile) > (gp.player.mapX - gp.player.screenX) && (d * gp.displayTile) - gp.displayTile < (gp.player.mapX + gp.player.screenX) && (c * gp.displayTile) + gp.displayTile > (gp.player.mapY - gp.player.screenY) && (c * gp.displayTile) - gp.displayTile < (gp.player.mapY + gp.player.screenY)) {
+                if ((d * gp.displayTile) + gp.displayTile > (gp.player.mapX - gp.player.screenX) && (d * gp.displayTile) - gp.displayTile < (gp.player.mapX + gp.player.screenX) && (c * gp.displayTile) + gp.displayTile > (gp.player.mapY - gp.player.screenY) && (c * gp.displayTile) - gp.displayTile < (gp.player.mapY + gp.player.screenY)) {
                     g2.drawImage(tiles[map[c][d]].image, screenX, screenY, gp.displayTile, gp.displayTile, null);
                 }
             }

@@ -21,7 +21,6 @@ public class CollisionCheck {
                 top = (e.mapY + e.hitbox.y - e.speed) / gPanel.displayTile;
                 tile1 = gPanel.TM.map[top][left];
                 tile2 = gPanel.TM.map[top][right];
-                System.out.println(left + " " + top + gPanel.TM.tiles[tile1].tileCollision + " " + right + " " + top + gPanel.TM.tiles[tile2].tileCollision);
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
                 }
