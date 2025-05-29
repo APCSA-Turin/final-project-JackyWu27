@@ -19,22 +19,38 @@ public class CollisionCheck {
         switch (e.direction) {
             case "up":
                 top = (e.mapY + e.hitbox.y - e.speed) / gPanel.displayTile;
-                tile1 = gPanel.TM.map[left][top];
-                tile2 = gPanel.TM.map[right][top];
+                tile1 = gPanel.TM.map[top][left];
+                tile2 = gPanel.TM.map[top][right];
+                System.out.println(left + " " + top + gPanel.TM.tiles[tile1].tileCollision + " " + right + " " + top + gPanel.TM.tiles[tile2].tileCollision);
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
                 }
                 break;
         
             case "down":
-
+                bottom = (e.mapY + e.hitbox.y + e.hitbox.width + e.speed) / gPanel.displayTile;
+                tile1 = gPanel.TM.map[bottom][left];
+                tile2 = gPanel.TM.map[bottom][right];
+                if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
+                    e.collision = true;
+                }
                 break;
             case "right":
-                
+                right = (e.mapX + e.hitbox.x + e.hitbox.width + e.speed) / gPanel.displayTile;
+                tile1 = gPanel.TM.map[top][right];
+                tile2 = gPanel.TM.map[bottom][right];
+                if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
+                    e.collision = true;
+                }
                 break;
         
             case "left":
-
+                left = (e.mapX + e.hitbox.x - e.speed) / gPanel.displayTile;
+                tile1 = gPanel.TM.map[top][left];
+                tile2 = gPanel.TM.map[bottom][left];
+                if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
+                    e.collision = true;
+                }
                 break;
         }
     }

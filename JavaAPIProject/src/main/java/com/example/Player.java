@@ -21,10 +21,10 @@ public class Player extends Entity {
         screenY = gp.height / 2 - (gp.displayTile / 2);
 
         hitbox = new Rectangle();
-        hitbox.x = 8;
-        hitbox.y = 16;
-        hitbox.width = 32;
-        hitbox.height = 32;
+        hitbox.x = 16;
+        hitbox.y = 20;
+        hitbox.width = 16;
+        hitbox.height = 24;
 
         setDefault();
         direction = "down";
@@ -48,7 +48,7 @@ public class Player extends Entity {
     public void setDefault () {
         mapX = 20 * gp.displayTile;
         mapY = 20 * gp.displayTile;
-        speed = 4;
+        speed = 6;
     }
 
     public void update () {
@@ -70,24 +70,24 @@ public class Player extends Entity {
             collision = false;
             gp.check.check(this);
 
-            if (!collision) {
+            if (collision) {
                 switch (direction) {
                     case "up":
-                        mapY -= speed * 2;
+                        mapY += speed;
                         break;
                 
                     case "down":
-                        mapY += speed + 1;
+                        mapY -= speed;
                         break;
 
                     case "left":
-                        mapX -= speed + 1;
+                        mapX += speed;
                         break;
                 
                     case "right":
-                        mapX += speed + 1;
+                        mapX -= speed;
                         break;
-                }
+                } 
             }
 
             count++;
