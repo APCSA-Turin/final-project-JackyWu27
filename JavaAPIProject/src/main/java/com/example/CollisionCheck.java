@@ -2,6 +2,7 @@ package com.example;
 
 public class CollisionCheck {
     GamePanel gPanel;
+    public boolean win = false;
 
     public CollisionCheck (GamePanel g) {
         gPanel = g;
@@ -49,6 +50,9 @@ public class CollisionCheck {
                 tile2 = gPanel.TM.map[bottom][left];
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
+                }
+                if (tile1 == 26 || tile2 == 26) {
+                    win = true;
                 }
                 break;
         }

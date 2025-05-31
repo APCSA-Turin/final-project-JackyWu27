@@ -11,10 +11,12 @@ public class TileManager {
     GamePanel gp;
     Tile [] tiles;
     int [][] map;
+    CollisionCheck collision;
 
-    public TileManager (GamePanel g) {
+    public TileManager (GamePanel g, CollisionCheck c) {
+        collision = c;
         gp = g;
-        tiles = new Tile[23];
+        tiles = new Tile[27];
         map = new int[gp.wCol][gp.wRow];
         getTileImage();
         load("map1");
@@ -88,12 +90,27 @@ public class TileManager {
             tiles[22] = new Tile();
             tiles[22].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\Barrier.png"));
             tiles[22].tileCollision = true;
+            tiles[23] = new Tile();
+            tiles[23].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallCombineDown.png"));
+            tiles[23].tileCollision = true;
+            tiles[24] = new Tile();
+            tiles[24].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallCombineUp.png"));
+            tiles[24].tileCollision = true;
+            tiles[25] = new Tile();
+            tiles[25].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallCombineLeft2.png"));
+            tiles[25].tileCollision = true;
+            tiles[26] = new Tile();
+            tiles[26].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\Win.png"));
+            tiles[26].tileCollision = true;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void draw (Graphics2D g2) { // If it's 1, then normal tile. If it's a 2, it is a edible tile. If it's a 3, then wall.
+        if (collision.win) {
+            load(null);
+        }
         for (int c = 0; c < gp.wRow; c ++) {
             for (int d = 0; d < gp.wCol; d++) {
                 int screenX = (d * gp.displayTile) - gp.player.mapX + gp.player.screenX;

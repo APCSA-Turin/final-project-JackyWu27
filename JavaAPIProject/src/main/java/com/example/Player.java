@@ -46,8 +46,8 @@ public class Player extends Entity {
 
     }
     public void setDefault () {
-        mapX = 20 * gp.displayTile;
-        mapY = 20 * gp.displayTile;
+        mapX = 21 * gp.displayTile;
+        mapY = 21 * gp.displayTile;
         speed = 6;
     }
 
