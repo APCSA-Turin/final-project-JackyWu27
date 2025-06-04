@@ -25,6 +25,11 @@ public class CollisionCheck {
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
                 }
+                if (tile1 == 26 || tile2 == 26) {
+                    win = true;
+                } else {
+                    win = false;
+                }
                 break;
         
             case "down":
@@ -34,6 +39,11 @@ public class CollisionCheck {
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
                 }
+                if (tile1 == 26 || tile2 == 26) {
+                    win = true;
+                } else {
+                    win = false;
+                }
                 break;
             case "right":
                 right = (e.mapX + e.hitbox.x + e.hitbox.width + e.speed) / gPanel.displayTile;
@@ -41,6 +51,11 @@ public class CollisionCheck {
                 tile2 = gPanel.TM.map[bottom][right];
                 if (gPanel.TM.tiles[tile1].tileCollision == true || gPanel.TM.tiles[tile2].tileCollision == true) {
                     e.collision = true;
+                }
+                if (tile1 == 26 || tile2 == 26) {
+                    win = true;
+                } else {
+                    win = false;
                 }
                 break;
         
@@ -53,6 +68,8 @@ public class CollisionCheck {
                 }
                 if (tile1 == 26 || tile2 == 26) {
                     win = true;
+                } else {
+                    win = false;
                 }
                 break;
         }

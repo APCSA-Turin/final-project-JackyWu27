@@ -10,13 +10,15 @@ public class Player extends Entity {
     GamePanel gp;
     Controls con;
     BufferedImage a;
+    TileManager tm;
 
     public final int screenX;
     public final int screenY;
 
-    public Player (GamePanel g, Controls c) {
+    public Player (GamePanel g, Controls c, TileManager t) {
         gp = g;
         con = c;
+        tm = t;
         screenX = gp.width / 2 - (gp.displayTile / 2);
         screenY = gp.height / 2 - (gp.displayTile / 2);
 
@@ -51,7 +53,25 @@ public class Player extends Entity {
         speed = 6;
     }
 
+    public void exit () {
+        mapX = 39 * gp.displayTile;
+        mapY = 7 * gp.displayTile;
+    }
+
+    public void back () {
+        mapX = 1 * gp.displayTile;
+        mapY = 7 * gp.displayTile;
+    }
+
     public void update () {
+        if (tm.position && tm.mapName.equals("map1")) {
+            back();
+            tm.position = false;
+        }
+        if (tm.position && tm.mapName.equals("win1")) {
+            exit();
+            tm.position = false;
+        }
         if (con.W || con.S || con.A || con.D) {
             if (con.W) {
                 direction = "up";

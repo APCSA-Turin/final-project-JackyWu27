@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable{
     Thread gameThread;
     public CollisionCheck check = new CollisionCheck(this);
     TileManager TM = new TileManager(this, check);
-    public Player player = new Player(this, control);
+    public Player player = new Player(this, control, TM);
 
     int playerX = 100;
     int playerY = 100;

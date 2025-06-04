@@ -12,6 +12,9 @@ public class TileManager {
     Tile [] tiles;
     int [][] map;
     CollisionCheck collision;
+    public boolean position = false;
+    private int ignoreMulti = 0;
+    public String mapName;
 
     public TileManager (GamePanel g, CollisionCheck c) {
         collision = c;
@@ -108,8 +111,16 @@ public class TileManager {
     }
 
     public void draw (Graphics2D g2) { // If it's 1, then normal tile. If it's a 2, it is a edible tile. If it's a 3, then wall.
-        if (collision.win) {
-            load(null);
+        if (collision.win && ignoreMulti == 0 && mapName.equals("map1")) {
+            ignoreMulti ++;
+            position = true;
+            load("win1");
+        } else if (collision.win && ignoreMulti == 0 && mapName.equals("win1")) {
+            ignoreMulti ++;
+            position = true;
+            load("map1");
+        } else {
+            ignoreMulti = 0;
         }
         for (int c = 0; c < gp.wRow; c ++) {
             for (int d = 0; d < gp.wCol; d++) {
@@ -129,7 +140,8 @@ public class TileManager {
         }
     }
 
-    public void load (String m) {
+    public void load (String m) { // This loads the map based on the string inputted
+        mapName = m;
         try {
             BufferedReader b = new BufferedReader(new FileReader("JavaAPIProject\\res\\MapTextFiles\\" + m + ".txt"));
             for (int h = 0; h < gp.wRow; h++) {
