@@ -27,6 +27,8 @@ public class GamePanel extends JPanel implements Runnable{
     TileManager TM = new TileManager(this, check);
     public Player player = new Player(this, control, TM);
 
+    Slime[] enemies = new Slime[10];
+
     int playerX = 100;
     int playerY = 100;
     int playerSpeed = 4;
@@ -80,6 +82,11 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
         TM.draw(g2);
+        for (int i = 0; i < enemies.length; i++) {
+            if (enemies[i] != null) {
+                enemies[i].draw(g2);
+            }
+        }
         player.draw(g2);
         g2.dispose();
     }

@@ -7,7 +7,6 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Player extends Entity {
-    GamePanel gp;
     Controls con;
     BufferedImage a;
     TileManager tm;
@@ -16,7 +15,7 @@ public class Player extends Entity {
     public final int screenY;
 
     public Player (GamePanel g, Controls c, TileManager t) {
-        gp = g;
+        super(g);
         con = c;
         tm = t;
         screenX = gp.width / 2 - (gp.displayTile / 2);

@@ -140,15 +140,15 @@ public class TileManager {
             for (int d = 0; d < gp.wCol; d++) {
                 int screenX = (d * gp.displayTile) - gp.player.mapX + gp.player.screenX;
                 int screenY = (c * gp.displayTile) - gp.player.mapY + gp.player.screenY;
-                if (map[c][d] == 0) { // if it's a 0, then randomize between a normal and edible tile
-                    if ((int) (Math.random() * 10) != 0) { // It has a 90% chance of being a normal tile
-                        map[c][d] = 0;
-                    } else {
-                        map[c][d] = 1;
-                    }
-                }
                 if ((d * gp.displayTile) + gp.displayTile > (gp.player.mapX - gp.player.screenX) && (d * gp.displayTile) - gp.displayTile < (gp.player.mapX + gp.player.screenX) && (c * gp.displayTile) + gp.displayTile > (gp.player.mapY - gp.player.screenY) && (c * gp.displayTile) - gp.displayTile < (gp.player.mapY + gp.player.screenY)) {
                     g2.drawImage(tiles[map[c][d]].image, screenX, screenY, gp.displayTile, gp.displayTile, null);
+                }
+                if (map[c][d] == 0) { // if it's a 0, then randomize between a normal and edible tile
+                    if ((int) (Math.random() * 10) != 0) { // It has a 90% chance of being a normal tile
+                        map[c][d] = 1;
+                    } else {
+                        map[c][d] = 2;
+                    }
                 }
             }
         }
