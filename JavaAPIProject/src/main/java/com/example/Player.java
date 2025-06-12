@@ -53,23 +53,22 @@ public class Player extends Entity {
         speed = 6;
     }
 
-    public void exit () {
-        mapX = 39 * gp.displayTile;
-        mapY = 7 * gp.displayTile;
-    }
+    public void changeMaps (String m) {
+        if (m.equals("map1")) {
+            mapX = 2 * gp.displayTile;
+            mapY = 7 * gp.displayTile;
+        } else if (m.equals("win1")) {
+            mapX = 38 * gp.displayTile;
+            mapY = 7 * gp.displayTile;
+        } else if (m.equals("backrooms")) {
+            setDefault();
+        }
 
-    public void back () {
-        mapX = 1 * gp.displayTile;
-        mapY = 7 * gp.displayTile;
     }
 
     public void update () {
-        if (tm.position && tm.mapName.equals("map1")) {
-            back();
-            tm.position = false;
-        }
-        if (tm.position && tm.mapName.equals("win1")) {
-            exit();
+        if (tm.position ) {
+            changeMaps(tm.mapName);
             tm.position = false;
         }
         if (con.W || con.S || con.A || con.D) {

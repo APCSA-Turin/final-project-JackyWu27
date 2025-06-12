@@ -7,12 +7,12 @@ public class MainWindow{
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
-        window.setTitle("Crappy Roguelike");
         window.setSize(1280,720);
 
         GamePanel GPanel = new GamePanel();
         window.add(GPanel);
         window.pack();
+        window.setTitle("Roguelike?");
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);

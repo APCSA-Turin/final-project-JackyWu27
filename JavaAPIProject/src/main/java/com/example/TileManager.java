@@ -15,6 +15,9 @@ public class TileManager {
     public boolean position = false;
     private int ignoreMulti = 0;
     public String mapName;
+    private int counter = 0;
+    public boolean firstTp = false;
+    public boolean backrooms = false;
 
     public TileManager (GamePanel g, CollisionCheck c) {
         collision = c;
@@ -111,16 +114,27 @@ public class TileManager {
     }
 
     public void draw (Graphics2D g2) { // If it's 1, then normal tile. If it's a 2, it is a edible tile. If it's a 3, then wall.
-        if (collision.win && ignoreMulti == 0 && mapName.equals("map1")) {
-            ignoreMulti ++;
+        if (counter > 100){
+            load("backrooms");
             position = true;
+            counter = 0;
+        } else if (collision.win && ignoreMulti == 0 && mapName.equals("map1")) {
+            ignoreMulti ++;
+            counter += 2;
+            position = true;
+            firstTp = true;
             load("win1");
         } else if (collision.win && ignoreMulti == 0 && mapName.equals("win1")) {
             ignoreMulti ++;
+            counter += 2;
             position = true;
+            firstTp = true;
             load("map1");
         } else {
             ignoreMulti = 0;
+            if (firstTp && counter > 0) {
+                counter --;
+            }
         }
         for (int c = 0; c < gp.wRow; c ++) {
             for (int d = 0; d < gp.wCol; d++) {
