@@ -106,7 +106,7 @@ public class TileManager {
             tiles[25].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\WallCombineLeft2.png"));
             tiles[25].tileCollision = true;
             tiles[26] = new Tile();
-            tiles[26].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\Win.png"));
+            tiles[26].image = ImageIO.read(new File("JavaAPIProject\\res\\WallArt\\Barrier.png"));
             tiles[26].tileCollision = true;
         } catch (Exception e) {
             e.printStackTrace();

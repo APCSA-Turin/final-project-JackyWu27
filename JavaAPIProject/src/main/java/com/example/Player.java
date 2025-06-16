@@ -11,21 +11,29 @@ public class Player extends Entity {
     BufferedImage a;
     TileManager tm;
 
+    public int exp; // how much exp until next level up
+    public int req; // how much exp until next level up not counting the amount you have
+    public int lvl; // increases hp and damage
     public final int screenX;
     public final int screenY;
 
     public Player (GamePanel g, Controls c, TileManager t) {
         super(g);
+        hp = 25;
+        maxHp = hp;
+        exp = 1;
+        req = 1;
+        lvl = 0;
         con = c;
         tm = t;
         screenX = gp.width / 2 - (gp.displayTile / 2);
         screenY = gp.height / 2 - (gp.displayTile / 2);
 
         hitbox = new Rectangle();
-        hitbox.x = 16;
-        hitbox.y = 20;
-        hitbox.width = 16;
-        hitbox.height = 24;
+        hitbox.x = 8;
+        hitbox.y = 24;
+        hitbox.width = 28;
+        hitbox.height = 16;
 
         setDefault();
         direction = "down";
@@ -41,6 +49,7 @@ public class Player extends Entity {
             left2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Left2.png"));
             right1 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Right1.png"));
             right2 = ImageIO.read(new File("JavaAPIProject\\res\\PlayerArt\\Right2.png"));
+            battle = ImageIO.read(new File("JavaAPIProject\\res\\BattleSprites\\BattlePlayer.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,44 +75,50 @@ public class Player extends Entity {
     }
 
     public void update () {
-        if (tm.position ) {
+        if(exp < 1) {
+            lvl ++;
+            req += 1 + lvl;
+            exp = req;
+            maxHp += 5;
+            hp = maxHp;
+        }
+        if (tm.position) {
             changeMaps(tm.mapName);
             tm.position = false;
         }
         if (con.W || con.S || con.A || con.D) {
             if (con.W) {
                 direction = "up";
-                mapY -= speed;
             } else if (con.S) {
                 direction = "down";
-                mapY += speed;
             } else if (con.A) {
                 direction = "left";
-                mapX -= speed;
             } else if (con.D) {
                 direction = "right";
-                mapX += speed;
             }
 
             collision = false;
             gp.check.check(this);
 
-            if (collision) {
+            int enemyCollision  = gp.check.checkSlime(this, gp.enemies);
+            enemyContact(enemyCollision);
+
+            if (!collision) {
                 switch (direction) {
                     case "up":
-                        mapY += speed;
+                        mapY -= speed;
                         break;
                 
                     case "down":
-                        mapY -= speed;
+                        mapY += speed;
                         break;
 
                     case "left":
-                        mapX += speed;
+                        mapX -= speed;
                         break;
                 
                     case "right":
-                        mapX -= speed;
+                        mapX += speed;
                         break;
                 } 
             }
@@ -121,6 +136,13 @@ public class Player extends Entity {
             if (direction.equals("left") || direction.equals("right")) {
                 spriteNum = 1;
             }
+        }
+    }
+
+    public void enemyContact (int c) {
+        if (c != 99) {
+            gp.unpaused = false;
+            gp.currentFight = c;
         }
     }
 

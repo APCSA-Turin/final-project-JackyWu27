@@ -5,9 +5,12 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 public class Slime extends Entity{
+
+    private int actionCounter = 0;
     
     public Slime (GamePanel gp) {
         super(gp);
+        hp = 15;
         direction = "down";
         speed = 3;
         getImage();
@@ -23,9 +26,31 @@ public class Slime extends Entity{
             left2 = ImageIO.read(new File("JavaAPIProject\\res\\SlimeArt\\SlimeLeft2.png"));
             right1 = ImageIO.read(new File("JavaAPIProject\\res\\SlimeArt\\SlimeRight1.png"));
             right2 = ImageIO.read(new File("JavaAPIProject\\res\\SlimeArt\\SlimeRight2.png"));
+            battle = ImageIO.read(new File("JavaAPIProject\\res\\BattleSprites\\SlimeBattle.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void setAction () {
+        actionCounter ++;
+
+        if (actionCounter > 60) {
+            int r = (int) (Math.random() * 4) + 1;
+            if (r == 1) {
+                direction = "up";
+            }
+            if (r == 2) {
+                direction = "down";
+            }
+            if (r == 3) {
+                direction = "left";
+            }
+            if (r == 4) {
+               direction = "right";
+            }
+            actionCounter = 0;
+        }
     }
 }
