@@ -3,11 +3,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Controls implements KeyListener {
-    public boolean W, S, A, D, defend;
+    public boolean W, S, A, D, charge;
     GamePanel gp;
 
     public Controls (GamePanel g) {
         gp = g;
+        charge = false;
     }
     public void keyTyped(KeyEvent e) {}
 
@@ -54,7 +55,6 @@ public class Controls implements KeyListener {
                 gp.ui.X ++;
             } 
             if (code == KeyEvent.VK_ENTER) {
-                defend = false;
                 if (gp.ui.X == 0) {
                     if (gp.ui.Y == 0) {
                         if (!gp.ui.menu.equals("battle")) {
@@ -66,6 +66,14 @@ public class Controls implements KeyListener {
                     } else {
                         if (gp.ui.menu.equals("battle")) {
                             gp.ui.menu = "magic"; // opens magic menu
+                        } else if (gp.ui.menu.equals("magic")) {
+                            int magic = (int) (Math.random() * 4) + 1 + 2 * gp.player.lvl; //hit slime for 1-4 fire damage + twice your lvl
+                            if (charge) {
+                                magic *= 2;
+                            }
+                            gp.enemies[gp.currentFight].hp -= magic;
+                            charge = false;
+                            gp.player.hp -= (int) (Math.random() * 4) + 3;
                         }
                         
                     }
@@ -73,6 +81,9 @@ public class Controls implements KeyListener {
                     if (gp.ui.Y == 0) {
                         if (gp.ui.menu.equals("battle")) {
                             gp.ui.menu = "item"; // opens item menu
+                        } else if (gp.ui.menu.equals("magic")) {
+                            charge = true;
+                            gp.player.hp -= (int) (Math.random() * 4) + 3;
                         }
                         
                     } else {

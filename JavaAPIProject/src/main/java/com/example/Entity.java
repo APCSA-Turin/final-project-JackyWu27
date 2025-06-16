@@ -12,10 +12,10 @@ public class Entity {
     public String direction; // entity direction
 
     public int count = 0;
-    public int spriteNum = 1;
+    public int spriteNum = 1; // counter to tell which sprite version to use
 
-    public Rectangle hitbox = new Rectangle();
-    public boolean collision = false;
+    public Rectangle hitbox = new Rectangle(); // detects collision
+    public boolean collision = false; // when about collide with something with collision it stops it.
     public int hp;
     public int maxHp;
 
@@ -29,24 +29,15 @@ public class Entity {
         
         if (!collision) {
                 switch (direction) {
-                    case "up":
-                        mapY -= speed;
-                        break;
+                    case "up": mapY -= speed; break;
                 
-                    case "down":
-                        mapY += speed;
-                        break;
+                    case "down": mapY += speed; break;
 
-                    case "left":
-                        mapX -= speed;
-                        break;
+                    case "left": mapX -= speed; break;
                 
-                    case "right":
-                        mapX += speed;
-                        break;
+                    case "right": mapX += speed; break;
                 } 
             }
-
             count++;
             if (count > 10) {
                 if (spriteNum == 1) {
@@ -66,7 +57,8 @@ public class Entity {
         int screenX = mapX - gp.player.mapX + gp.player.screenX;
         int screenY = mapY - gp.player.mapY + gp.player.screenY;
 
-        if (mapX + 3 * gp.tileSize > gp.player.mapX - gp.player.screenX && mapX - gp.tileSize < gp.player.mapX + gp.player.screenX && mapY + 3 * gp.tileSize > gp.player.mapY - gp.player.screenY && mapY - gp.tileSize < gp.player.mapY + gp.player.screenY ) {
+        if (mapX + 3 * gp.tileSize > gp.player.mapX - gp.player.screenX && mapX - gp.tileSize < gp.player.mapX + gp.player.screenX 
+        && mapY + 3 * gp.tileSize > gp.player.mapY - gp.player.screenY && mapY - gp.tileSize < gp.player.mapY + gp.player.screenY ) {
             switch (direction) { // changes image based on direction
             case "up":
                 if (spriteNum == 1) {

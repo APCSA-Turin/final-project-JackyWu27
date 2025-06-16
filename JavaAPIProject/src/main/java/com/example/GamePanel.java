@@ -104,8 +104,6 @@ public class GamePanel extends JPanel implements Runnable{
                     enemies[s].update();
                 }
             }
-        } else {
-            
         }
     }
 

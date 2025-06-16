@@ -3,7 +3,7 @@ package com.example;
 import javax.swing.*;
 
 public class MainWindow{
-    public static void main(String[] args) {
+    public static void main(String[] args) { // creates gui
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(true);
